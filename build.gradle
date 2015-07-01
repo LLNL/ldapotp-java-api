@@ -11,11 +11,13 @@ def mainClass  = "gov.llnl.lc.stg.ldapotp.test.OTP_Authenticate"
 def bundleDescription = "Java API for the LDAPOTP Client Libraries"
 
 // In this section you declare where to find the dependencies of your project
+// and in this case, all subprojects should be at the same level as this
+// project (get jars from the projects build/libs directory)
 repositories {
 
     // location of my jars
        flatDir {
-       dirs '/home/meier3/jarRepo/myBin/'
+       dirs '../lc-jcommon/build/libs/'
    }
 }
 
