@@ -17,7 +17,7 @@ repositories {
 
     // location of my jars
        flatDir {
-       dirs '../lc-jcommon/build/libs/'
+       dirs '../lc-jcommon/build/distributions/'
    }
 }
 
