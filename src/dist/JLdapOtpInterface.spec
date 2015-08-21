@@ -2,7 +2,8 @@
 
 Name:           	llnl-ldapotp-clt-java
 Version:        	2.00
-Release:        	31%{?dist}
+Serial:             31
+Release:        	%{serial}%{?dist}
 Summary:        	Java Client Interface for the LDAP/OTP libraries
 
 Group:          	Development/Libraries
