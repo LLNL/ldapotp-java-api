@@ -7,8 +7,19 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
+// Apply the distribution plugin to build tar files for building rpms
+apply plugin: 'distribution'
+
 def mainClass  = "gov.llnl.lc.stg.ldapotp.test.OTP_Authenticate"
 def bundleDescription = "Java API for the LDAPOTP Client Libraries"
+
+def specFileName = "${rootProject.name}" + ".spec"
+def distFileName = "llnl-ldapotp-clt-java"
+def buildDist    = 'build/dist'
+
+// the location of resources this package depends on, and will include
+def repoDist     = '../lc-jcommon/build/distributions/'
+def depJarName   = 'LcCommon'
 
 // In this section you declare where to find the dependencies of your project
 // and in this case, all subprojects should be at the same level as this
@@ -17,25 +28,30 @@ repositories {
 
     // location of my jars
        flatDir {
-       dirs '../lc-jcommon/build/distributions/'
+       dirs "${repoDist}"
    }
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // my dependent jars (see repos above, and leave off the .jar)
-    compile name: 'LcCommon'
+    compile name: "${depJarName}"
 }
 
-task makeDistro() << {
-    def subdir = new File(project.buildDir, "distributions")
+task makeDistro() {
+  description 'create the dist subdirectory'
+  println(" makeDistro" )
+}
+
+makeDistro << {
+    def subdir = new File(project.buildDir, "dist")
     println("subdir: "+ subdir)
 
     if( !subdir.exists() ) {
-        println("creating subdir")
+        println("creating dist subdir")
 
         if(subdir.mkdirs()) {
-            println("succeeded in making folder")
+            println("succeeded in making dist folder")
 
             if(subdir.exists()) {
                 println("folder exists")
@@ -49,6 +65,25 @@ task makeDistro() << {
         println("folder exists already")
     }
 }
+
+distributions {
+    custom {
+        baseName = distFileName
+   String fname1 = "${rootProject.name}" + "-" + version + ".jar"
+   String fname2 = "${rootProject.name}" + ".jar"
+   String fromString = "${rootProject.libsDir}" + "/" +  fname1
+        contents {
+        
+            from { 'src/dist' }
+            from { "${buildDist}" }
+        }
+    }
+}
+
+customDistTar{
+                compression = Compression.GZIP
+                extension = 'tar.gz'
+            }
 
 task incrementBuildNumber  {
   description 'increment the artifactBuildNumber in the gradle.properties file, and update the version accordingly'
@@ -70,18 +105,24 @@ incrementBuildNumber  << {
 
 task renameJar (dependsOn: jar) {
  description 'copies and renames the jar file to the simple form in the distributions directory (needed for ldapotp-java-api)'  
+ println( "renameJar - static")
 }
 
 renameJar << {
+   println("renameJar - dynamic")
    String fname1 = "${rootProject.name}" + "-" + version + ".jar"
    String fname2 = "${rootProject.name}" + ".jar"
    String fromString = "${rootProject.libsDir}" + "/" +  fname1
-   String toString = "${rootProject.distsDir}"
+   String toString = "${buildDist}"
    println "Copying from: " + fromString + ", to: " + toString
    copy {
    from fromString
    into toString
-   rename(fname1, fname2)
+ //  rename(fname1, fname2)
+   }
+   copy {
+   from "${repoDist}" + "/" + "${depJarName}" + ".jar"
+   into toString + "/libs"
    }
 }
 
@@ -148,7 +189,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 task fatJar(type: Jar, dependsOn: classes) {
   classifier = 'all'
- dependsOn incrementBuildNumber
+// dependsOn incrementBuildNumber
     doFirst {
         manifest {
               attributes('Gradle-Version':  gradle.gradleVersion,
