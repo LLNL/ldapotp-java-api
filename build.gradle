@@ -16,6 +16,7 @@ def bundleDescription = "Java API for the LDAPOTP Client Libraries"
 def specFileName = "${rootProject.name}" + ".spec"
 def distFileName = "llnl-ldapotp-clt-java"
 def buildDist    = 'build/dist'
+def nxtBuildNum  = "1"
 
 // the location of resources this package depends on, and will include
 def repoDist     = '../lc-jcommon/build/distributions/'
@@ -73,8 +74,7 @@ distributions {
    String fname2 = "${rootProject.name}" + ".jar"
    String fromString = "${rootProject.libsDir}" + "/" +  fname1
         contents {
-        
-            from { 'src/dist' }
+             from { 'src/dist' }
             from { "${buildDist}" }
         }
     }
@@ -87,7 +87,7 @@ customDistTar{
 
 task incrementBuildNumber  {
   description 'increment the artifactBuildNumber in the gradle.properties file, and update the version accordingly'
-  version = artifactMajorVersion + "-" + artifactReleaseNumber + "-b" + artifactBuildNumber
+  version = artifactMajorVersion + "-" + artifactReleaseNumber
 }
 
 incrementBuildNumber  << {
@@ -96,11 +96,13 @@ incrementBuildNumber  << {
   File propsFile = new File('gradle.properties')
   props.load(propsFile.newDataInputStream())
   Integer nextbuildnum = (((props.getProperty('artifactBuildNumber')) as BigDecimal) + 1 )
+  nxtBuildNum = nextbuildnum.toString()
   // save it for use next time
-  props.setProperty('artifactBuildNumber', nextbuildnum.toString())
+  props.setProperty('artifactBuildNumber', nxtBuildNum)
   props.store(propsFile.newWriter(), null)
   props.load(propsFile.newDataInputStream())
-  version = artifactMajorVersion + "-" + artifactReleaseNumber + "-b" + nextbuildnum.toString()
+//  version = artifactMajorVersion + "-" + artifactReleaseNumber + "-b" + nextbuildnum.toString()
+  version = artifactMajorVersion + "-" + artifactReleaseNumber
 }
 
 task renameJar (dependsOn: jar) {
@@ -110,7 +112,8 @@ task renameJar (dependsOn: jar) {
 
 renameJar << {
    println("renameJar - dynamic")
-   String fname1 = "${rootProject.name}" + "-" + version + ".jar"
+ //  String fname1 = "${rootProject.name}" + "-" + version  + "-b" + nxtBuildNum + ".jar"
+   String fname1 = "${rootProject.name}" + "-" + version  + ".jar"
    String fname2 = "${rootProject.name}" + ".jar"
    String fromString = "${rootProject.libsDir}" + "/" +  fname1
    String toString = "${buildDist}"
@@ -139,14 +142,14 @@ jar {
                 "Main-Class" :"${mainClass}",
                "Implementation-Vendor"  : "Lawrence Livermore National Laboratory",
                 "Implementation-Title" :"${rootProject.name}",
-                "Implementation-Version" : version, 
+                "Implementation-Version" : version + "-b" + nxtBuildNum, 
                 "Bundle-License" : "GNU General Public License, version 2",
                "Bundle-Description" : "${bundleDescription}",
                 "Built-Date" : new Date())               
         }
      }
     doLast {
-      println "2. Renaming now, from ${rootProject.name}" + "-" + version + ".jar to ${rootProject.name}" + ".jar"
+      println "2. Renaming now, from ${rootProject.name}" + "-" + version  + "-b" + nxtBuildNum + ".jar to ${rootProject.name}" + ".jar"
       renameJar
     }
 }
@@ -161,7 +164,7 @@ task sourcesJar(type: Jar, dependsOn: classes){
                  'Built-By':  System.getProperty('user.name'),
                 "Implementation-Vendor"  : "Lawrence Livermore National Laboratory",
                 "Implementation-Title" :"${rootProject.name}",
-                "Implementation-Version" : version, 
+                "Implementation-Version" : version + "-b" + nxtBuildNum, 
                 "Bundle-License" : "GNU General Public License, version 2",
                "Bundle-Description" : "${bundleDescription}",
                 "Built-Date" : new Date())               
@@ -179,7 +182,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
                  'Built-By':  System.getProperty('user.name'),
                 "Implementation-Vendor"  : "Lawrence Livermore National Laboratory",
                 "Implementation-Title" :"${rootProject.name}",
-                "Implementation-Version" : version, 
+                "Implementation-Version" : version + "-b" + nxtBuildNum, 
                 "Bundle-License" : "GNU General Public License, version 2",
                "Bundle-Description" : "${bundleDescription}",
                  "Built-Date" : new Date())               
@@ -199,7 +202,7 @@ task fatJar(type: Jar, dependsOn: classes) {
                 "Main-Class" :"${mainClass}",
                 "Implementation-Vendor"  : "Lawrence Livermore National Laboratory",
                 "Implementation-Title" :"${rootProject.name}",
-                "Implementation-Version" : version, 
+                "Implementation-Version" : version + "-b" + nxtBuildNum, 
                 "Bundle-License" : "GNU General Public License, version 2",
                "Bundle-Description" : "${bundleDescription}",
                 "Built-Date" : new Date())               

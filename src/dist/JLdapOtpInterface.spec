@@ -1,7 +1,7 @@
 %define java_package_name JLdapOtpInterface
 
 Name:           	llnl-ldapotp-clt-java
-Version:        	2.0.0
+Version:        	2.00
 Release:        	31%{?dist}
 Summary:        	Java Client Interface for the LDAP/OTP libraries
 
@@ -68,6 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Aug 21 2015 Tim Meier <meier3@llnl.gov> 2.00-31
+- New gradle build and package.
 * Thu Nov 24 2014 Tim Meier <meier3@llnl.gov> 1.0.0-27
 - New LcCommon (release 19), included in this package
 * Thu Oct  9 2013 Tim Meier <meier3@llnl.gov> 1.0.0-21
