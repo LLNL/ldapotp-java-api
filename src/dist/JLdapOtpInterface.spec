@@ -8,7 +8,7 @@ Summary:        	Java Client Interface for the LDAP/OTP libraries
 Group:          	Development/Libraries
 License:        	GPL/BSD
 BuildRoot: 			%{_tmppath}/%{name}-%{version}
-Source0:        	%{name}-%{version}.tar.gz
+Source0:        	%{name}-%{version}-%{release}.tar.gz
 BuildArch:      	noarch
 
 BuildRequires:  	java-devel >= 1:1.6.0
