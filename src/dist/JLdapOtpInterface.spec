@@ -2,14 +2,14 @@
 %define my_release   31
 
 Name:           	llnl-ldapotp-clt-java
-Version:        	2.00
-Release:        	%{my_release}%{?dist}
+Version:        	2.00-%{my_release}
+Release:        	%{?dist}
 Summary:        	Java Client Interface for the LDAP/OTP libraries
 
 Group:          	Development/Libraries
 License:        	GPL/BSD
-BuildRoot: 			%{_tmppath}/%{name}-%{version}-%{my_release}
-Source0:        	%{name}-%{version}-%{my_release}.tar.gz
+BuildRoot: 			%{_tmppath}/%{name}-%{version}
+Source0:        	%{name}-%{version}.tar.gz
 BuildArch:      	noarch
 
 BuildRequires:  	java-devel >= 1:1.6.0
@@ -45,7 +45,7 @@ This package contains the API documentation for %{java_package_name}.
 mkdir -p $RPM_BUILD_ROOT%{_javadir}
 cd $RPM_BUILD_ROOT%{_javadir}
 tar -xzf %{SOURCE0}
-mv $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}-%{my_release} $RPM_BUILD_ROOT%{_javadir}/%{java_package_name}
+mv $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version} $RPM_BUILD_ROOT%{_javadir}/%{java_package_name}
 cd $RPM_BUILD_ROOT%{_javadir}/%{java_package_name}
 rm -f *.spec
 ln -s %{java_package_name}-*.jar %{java_package_name}.jar
