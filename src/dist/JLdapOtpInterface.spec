@@ -45,7 +45,7 @@ This package contains the API documentation for %{java_package_name}.
 mkdir -p $RPM_BUILD_ROOT%{_javadir}
 cd $RPM_BUILD_ROOT%{_javadir}
 tar -xzf %{SOURCE0}
-mv $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version} $RPM_BUILD_ROOT%{_javadir}/%{java_package_name}
+mv $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}-%{my_release} $RPM_BUILD_ROOT%{_javadir}/%{java_package_name}
 cd $RPM_BUILD_ROOT%{_javadir}/%{java_package_name}
 rm -f *.spec
 ln -s %{java_package_name}-*.jar %{java_package_name}.jar
