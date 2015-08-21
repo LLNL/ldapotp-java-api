@@ -2,8 +2,8 @@
 %define my_release   31
 
 Name:           	llnl-ldapotp-clt-java
-Version:        	2.00-%{my_release}
-Release:        	%{?dist}
+Version:        	2.00
+Release:        	%{my_release}%{?dist}
 Summary:        	Java Client Interface for the LDAP/OTP libraries
 
 Group:          	Development/Libraries
