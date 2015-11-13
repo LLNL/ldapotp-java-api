@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Fri Aug 21 2015 Tim Meier <meier3@llnl.gov> 2.00-31
+* Fri Nov 13 2015 Tim Meier <meier3@llnl.gov> 2.00-31
 - New gradle build and package.
 * Thu Nov 24 2014 Tim Meier <meier3@llnl.gov> 1.0.0-27
 - New LcCommon (release 19), included in this package
