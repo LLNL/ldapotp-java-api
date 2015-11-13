@@ -70,17 +70,16 @@ makeDistro << {
 distributions {
     custom {
         baseName = distFileName
-   String fname1 = "${rootProject.name}" + "-" + version + ".jar"
-   String fname2 = "${rootProject.name}" + ".jar"
-   String fromString = "${rootProject.libsDir}" + "/" +  fname1
+         
         contents {
-             from { 'src/dist' }
-            from { "${buildDist}" }
-        }
+            from { 'src/dist' }
+            from { 'build/dist'}
+         }
     }
 }
 
 customDistTar{
+                archiveName distFileName + ".tar.gz"
                 compression = Compression.GZIP
                 extension = 'tar.gz'
             }
