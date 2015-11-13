@@ -79,7 +79,7 @@ distributions {
 }
 
 customDistTar{
-                archiveName distFileName + ".tar.gz"
+//                archiveName distFileName + ".tar.gz"
                 compression = Compression.GZIP
                 extension = 'tar.gz'
             }
@@ -113,7 +113,7 @@ task renameJar (dependsOn: jar) {
 
 renameJar << {
    println("renameJar - dynamic")
- //  String fname1 = "${rootProject.name}" + "-" + version  + "-b" + nxtBuildNum + ".jar"
+//   String fname1 = "${rootProject.name}" + "-" + version  + "-b" + nxtBuildNum + ".jar"
    String fname1 = "${rootProject.name}" + "-" + version  + ".jar"
    String fname2 = "${rootProject.name}" + ".jar"
    String fromString = "${rootProject.libsDir}" + "/" +  fname1
@@ -122,8 +122,8 @@ renameJar << {
    copy {
    from fromString
    into toString
-  println "Renaming from: " + fname1 + ", to: " + fname2
-   rename(fname1, fname2)
+//  println "Renaming from: " + fname1 + ", to: " + fname2
+//   rename(fname1, fname2)
    }
   println "Copying from: " + fname1 + ", to: " + fname2
    copy {
