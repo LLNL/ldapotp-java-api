@@ -128,7 +128,7 @@ renameJar << {
   println "Copying from: " + fname1 + ", to: " + fname2
    copy {
    from "${repoDist}" + "/" + "${depJarName}" + ".jar"
-   into toString + "/libs"
+   into toString + "/lib"
    }
 }
 

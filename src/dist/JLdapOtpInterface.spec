@@ -1,5 +1,5 @@
 %define java_package_name JLdapOtpInterface
-%define my_release   31
+%define my_release   33
 
 Name:           	llnl-ldapotp-clt-java
 Version:        	2.00
@@ -52,6 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Nov 18 2015 Tim Meier <meier3@llnl.gov> 2.00-33
+- moved depended jars back to original lib instead of libs
 * Fri Nov 13 2015 Tim Meier <meier3@llnl.gov> 2.00-31
 - New gradle build and package.
 * Thu Nov 24 2014 Tim Meier <meier3@llnl.gov> 1.0.0-27
