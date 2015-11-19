@@ -2,7 +2,7 @@
 %define my_release   35
 
 Name:           	llnl-ldapotp-clt-java
-Version:        	2.00
+Version:        	2.01
 Release:        	%{my_release}%{?dist}
 Summary:        	Java Client Interface for the LDAP/OTP libraries
 
@@ -52,6 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Nov 19 2015 Tim Meier <meier3@llnl.gov> 2.01-35
+- bumped version number
 * Wed Nov 18 2015 Tim Meier <meier3@llnl.gov> 2.00-35
 - fixed LcCommon
 * Fri Nov 13 2015 Tim Meier <meier3@llnl.gov> 2.00-31
