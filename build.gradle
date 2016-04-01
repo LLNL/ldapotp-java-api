@@ -13,7 +13,7 @@ apply plugin: 'distribution'
 def mainClass  = "gov.llnl.lc.stg.ldapotp.test.OTP_Authenticate"
 def bundleDescription = "Java API for the LDAPOTP Client Libraries"
 
-def specFileName = "${rootProject.name}" + ".spec"
+def specFileName = "llnl-ldapotp-clt-java.spec"
 def distFileName = "llnl-ldapotp-clt-java"
 def buildDist    = 'build/dist'
 def nxtBuildNum  = "1"
