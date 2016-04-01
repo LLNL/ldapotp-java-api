@@ -13,7 +13,7 @@ apply plugin: 'distribution'
 def mainClass  = "gov.llnl.lc.stg.ldapotp.test.OTP_Authenticate"
 def bundleDescription = "Java API for the LDAPOTP Client Libraries"
 
-def specFileName = "${rootProject.name}" + ".spec"
+def specFileName = "llnl-ldapotp-clt-java.spec"
 def distFileName = "llnl-ldapotp-clt-java"
 def buildDist    = 'build/dist'
 def nxtBuildNum  = "1"
@@ -37,6 +37,10 @@ repositories {
 dependencies {
     // my dependent jars (see repos above, and leave off the .jar)
     compile name: "${depJarName}"
+}
+
+task wrapper(type: Wrapper) {
+   gradleVersion = '3.1' //version required
 }
 
 task makeDistro() {

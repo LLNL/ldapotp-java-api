@@ -12,8 +12,8 @@ BuildRoot: 			%{_tmppath}/%{name}-%{version}
 Source0:        	%{name}-%{version}.tar.gz
 BuildArch:      	noarch
 
-BuildRequires:  	java-devel >= 1:1.6.0
-Requires:       	java >= 1:1.6.0
+BuildRequires:  	java-devel >= 1:1.8.0
+Requires:       	java >= 1:1.8.0
 Requires:       	llnl-ldapotp-clt-jni-auth-libs
 BuildRequires:  	jpackage-utils
 BuildRequires:  	ant >= 1.6
