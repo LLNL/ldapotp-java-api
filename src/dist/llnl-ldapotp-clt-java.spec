@@ -1,8 +1,8 @@
 %define java_package_name JLdapOtpInterface
-%define my_release   35
+%define my_release   37
 
 Name:           	llnl-ldapotp-clt-java
-Version:        	2.01
+Version:        	2.02
 Release:        	%{my_release}%{?dist}
 Summary:        	Java Client Interface for the LDAP/OTP libraries
 
@@ -52,21 +52,23 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Nov 9 2016 Tim Meier <meier3@llnl.gov> 2.02-37
+- java 8, gradle 3
 * Thu Nov 19 2015 Tim Meier <meier3@llnl.gov> 2.01-35
 - bumped version number
 * Wed Nov 18 2015 Tim Meier <meier3@llnl.gov> 2.00-35
 - fixed LcCommon
 * Fri Nov 13 2015 Tim Meier <meier3@llnl.gov> 2.00-31
 - New gradle build and package.
-* Thu Nov 24 2014 Tim Meier <meier3@llnl.gov> 1.0.0-27
+* Mon Nov 24 2014 Tim Meier <meier3@llnl.gov> 1.0.0-27
 - New LcCommon (release 19), included in this package
-* Thu Oct  9 2013 Tim Meier <meier3@llnl.gov> 1.0.0-21
+* Thu Oct 10 2013 Tim Meier <meier3@llnl.gov> 1.0.0-21
 - No code change, updated to use configure.ac instead of configure.in
 * Fri Oct  4 2013 Tim Meier <meier3@llnl.gov> 1.0.0-19
 - Fixed convenience scripts to start with magic kernel shell directive
 * Fri Sep 20 2013 Tim Meier <meier3@llnl.gov> 1.0.0-17
 - Minor change to the default date format in LcCommon. No change to authentications.
-* Fri Aug  8 2013 Tim Meier <meier3@llnl.gov> 1.0.0-15
+* Fri Aug  9 2013 Tim Meier <meier3@llnl.gov> 1.0.0-15
 - Minor additions to LcCommon.jar, used by many other lc applications. No change to authentications.
 * Mon Jun 24 2013 Tim Meier <meier3@llnl.gov> 1.0.0-14
 - Extended and improved LcCommon.jar, used by many other lc applications. No change to authentications.
